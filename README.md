@@ -2,8 +2,6 @@
 
 # THIS IS NOT A OPERATIONAL MODULE
 
-# This is a small module I created to open a notification that the players turn is next, or that it's their turn. Based on the Smart-Target and Easy Target! module. 
-
 # I'm just learning how to write code for Foundry VTT.
 
 ## Features
