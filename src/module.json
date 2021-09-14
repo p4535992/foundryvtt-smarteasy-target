@@ -1,0 +1,69 @@
+{
+  "name": "foundryvtt-smarteasy-target",
+  "title": "Smart and Easy Target",
+  "description": "Enhancements for the targeting feature",
+  "version": "0.0.1",
+  "author": "p4535992",
+  "type": "module",
+  "socket": true,
+  "includes": [
+    "./assets/**",
+    "./lang/**",
+    "./scripts/**",
+    "./styles/**",
+    "./templates/**",
+    "./module.json",
+    "./README.md",
+    "./icons/**",
+    "./packs/**"
+  ],
+  "media": [
+    {
+      "type": "icon",
+      "location": ""
+    },
+    {
+      "type": "cover",
+      "location": ""
+    },
+    {
+      "type": "screenshot",
+      "location": ""
+    }
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "es",
+      "name": "Español",
+      "path": "lang/es.json"
+    },
+    {
+      "lang": "ja",
+      "name": "日本語",
+      "path": "lang/ja.json"
+    }
+  ],
+  "scripts": [],
+  "systems": [],
+  "esmodules": ["smarteasy-target.js"],
+  "styles": [],
+  "minimumCoreVersion": "0.8.8",
+  "compatibleCoreVersion": "0.8.9",
+  "url": "https://github.com/p4535992/foundryvtt-smarteasy-target",
+  "manifest": "https://raw.githubusercontent.com/p4535992/foundryvtt-smarteasy-target/master/src/module.json",
+  "download": "https://raw.githubusercontent.com/p4535992/foundryvtt-smarteasy-target/master/package/variant-encumbrance-dnd5e-v0.5.19.zip",
+  "changelog": "https://raw.githubusercontent.com/p4535992/foundryvtt-smarteasy-target/master/changelog.md",
+  "bugs": "https://github.com/p4535992/foundryvtt-smarteasy-target/issues",
+  "allowBugReporter": true,
+  "manifestPlusVersion": "1.2.0",
+  "dependencies": [
+    {
+      "name": "lib-wrapper"
+    }
+  ]
+}
