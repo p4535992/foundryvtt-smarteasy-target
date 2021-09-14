@@ -2,6 +2,7 @@
 ## THIS IS NOT A OPERATIONAL MODULE, I'm just learning how to write code for Foundry VTT.
 
 A small Foundry VTT module that allows for easy targeting whilst holding alt. Also allows for alt+clicking inside an AoE to target all tokens within that AoE. Holding alt while placing a template will also target all tokens within that template when placed.
+
 ## Features
 
 1. Target with Alt+Click
@@ -164,6 +165,7 @@ This package is under an [GPL-3.0 License](LICENSE) and the [Foundry Virtual Tab
 - [MIT License](https://github.com/eadorin/target-enhancements/blob/master/LICENSE) from [Target Enhancements](https://github.com/eadorin/target-enhancements)
 - [GPL-3.0 License](https://github.com/basicer/foundryvtt-t-is-for-target/blob/master/LICENSE) from  [T is for target](https://github.com/basicer/foundryvtt-t-is-for-target)
 - [GPL-3.0 License](https://bitbucket.org/Fyorl/easy-target/src/master/LICENSE) from [SmartTarget](https://github.com/theripper93/Smart-Target)
+
 ## Credit
 
 Thanks to anyone who helps me with this code! I appreciate the user community's feedback on this project!

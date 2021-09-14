@@ -137,7 +137,7 @@ export const SmartEasyTarget = {
 
     if (oe.altKey) {
       //ui.controls?.control?.activeTool = 'target';
-      setProperty(<any>ui.controls?.control,'activeTool','target');
+      setProperty(<any>ui.controls?.control, 'activeTool', 'target');
     }
 
     if (ui.controls?.control?.activeTool === 'target') {
@@ -149,7 +149,7 @@ export const SmartEasyTarget = {
 
     (<Map<Object, any>>SmartEasyTarget.releaseOthersMap).delete(layer);
     //ui.controls?.control?.activeTool = tool;
-    setProperty(<any>ui.controls?.control,'activeTool',tool);
+    setProperty(<any>ui.controls?.control, 'activeTool', tool);
   },
 
   templateLayerOnDragLeftDrop: function (wrapped, ...args) {
@@ -224,7 +224,7 @@ export const SmartEasyTarget = {
     });
     control.tools.push({
       name: 'cancelTargetsAll',
-      title: 'Clear Targets/Selection All',
+      title: 'Clear Targets/Selection All user',
       icon: 'fa fa-adjust',
       visible: getGame().user?.isGM,
       button: true,
@@ -325,9 +325,9 @@ export const SmartEasyTarget = {
     const selectState = args[0].data._selectState;
 
     if (oe.altKey) {
-      if (oe.altKey ) {
+      if (oe.altKey) {
         // ui.controls?.control?.activeTool ='target';
-        setProperty(<any>ui.controls?.control,'activeTool','target');
+        setProperty(<any>ui.controls?.control, 'activeTool', 'target');
       }
 
       wrapped(...args);
@@ -343,9 +343,9 @@ export const SmartEasyTarget = {
 
         SmartEasyTarget.targetTokensInArea(templates, SmartEasyTarget.releaseBehaviour(oe));
       }
-      
+
       // ui.controls?.control?.activeTool =tool;
-      setProperty(<any>ui.controls?.control,'activeTool',tool);
+      setProperty(<any>ui.controls?.control, 'activeTool', tool);
       let distance = Infinity;
       let closestTemplate: MeasuredTemplate | null = null;
       const places = <MeasuredTemplate[]>getCanvas().templates?.placeables;
@@ -384,14 +384,14 @@ export const SmartEasyTarget = {
     //   return wrapped(...args);
     // }
 
-    if (oe.altKey) {
-      // ui.controls?.control?.activeTool ='target';
-      setProperty(<any>ui.controls?.control,'activeTool','target');
-    }
+    // if (oe.altKey) {
+    //   // ui.controls?.control?.activeTool ='target';
+    //   setProperty(<any>ui.controls?.control,'activeTool','target');
+    // }
 
-    const canControl = wrapped(...args);
-    // ui.controls?.control?.activeTool =tool;
-    setProperty(<any>ui.controls?.control,'activeTool', tool);
+    // const canControl = wrapped(...args);
+    // // ui.controls?.control?.activeTool =tool;
+    // setProperty(<any>ui.controls?.control,'activeTool', tool);
 
     switch (mode) {
       case 1:
@@ -402,8 +402,8 @@ export const SmartEasyTarget = {
         break;
     }
 
-    return canControl;
-    // return wrapped(...args);
+    // return canControl;
+    return wrapped(...args);
   },
 
   /**

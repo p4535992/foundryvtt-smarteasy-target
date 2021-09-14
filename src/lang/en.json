@@ -5,11 +5,24 @@
   "foundryvtt-smarteasy-target.settings.alwaysTarget.name": "Always Target",
   "foundryvtt-smarteasy-target.settings.alwaysTarget.hint": "Clicking on non-owned tokens automatically targets them",
 
+  "foundryvtt-smarteasy-target.settings.targetingMode.name": "Targeting Mode",
+  "foundryvtt-smarteasy-target.settings.targetingMode.hint": "Default: Default foundry behaviour. Alt-click: Target tokens by pressing Alt+Click, add Shift to target multiple. Always Target: Clicking on non-owned tokens automatically targets them",
+
+  "foundryvtt-smarteasy-target.settings.targetingMode.opt0": "Default",
+  "foundryvtt-smarteasy-target.settings.targetingMode.opt1": "Alt-Click",
+  "foundryvtt-smarteasy-target.settings.targetingMode.opt2": "Always Target (Player Only)",
+
   "foundryvtt-smarteasy-target.settings.portraitPips.name": "Show indicator portraits instead of colors",
   "foundryvtt-smarteasy-target.settings.portraitPips.hint": "Uses avatar for GM, defaults to Token for players if no avatar is found for the assigned actor (requires refresh)",
 
-  "foundryvtt-smarteasy-target.settings.useToken.name": "[Experimental] Use Tokens instead of Avatars",
-  "foundryvtt-smarteasy-target.settings.useToken.hint": "[Experimental] Use tokens instead of avatars for players target indicators",
+  "foundryvtt-smarteasy-target.settings.useToken.name": "Use Tokens instead of Avatars",
+  "foundryvtt-smarteasy-target.settings.useToken.hint": "Use tokens instead of avatars for players target indicators",
+
+  "foundryvtt-smarteasy-target.settings.useTokenGm.name": "Gm image",
+  "foundryvtt-smarteasy-target.settings.useTokenGm.hint": "The image to use on indicator portraits for the GM",
+  "foundryvtt-smarteasy-target.settings.useTokenGm.opt0": "Player Avatar",
+  "foundryvtt-smarteasy-target.settings.useTokenGm.opt1": "Token Portrait",
+  "foundryvtt-smarteasy-target.settings.useTokenGm.opt2": "Token Image",
 
   "foundryvtt-smarteasy-target.settings.insidePips.name": "Keep target indicators inside the token",
   "foundryvtt-smarteasy-target.settings.insidePips.hint": "Move the target indicators in a way that they remain inside the token border",
@@ -62,10 +75,11 @@
   "foundryvtt-smarteasy-target.settings.releaseBehaviour.choice0.Sticky": "Sticky",
 
   "foundryvtt-smarteasy-target.warningNoSelectMoreThanOneToken": "No token is selected to set up the targets",
+  "foundryvtt-smarteasy-target.controls.cleartargets.name": "Clear All Targets",
 
-  "foundryvtt-smarteasy-target.settings.forceToUseSelectedTokenForPortraitPips.name": "[Experimental] Force to use selected tokens image for build the indicator portraits",
-  "foundryvtt-smarteasy-target.settings.forceToUseSelectedTokenForPortraitPips.hint": "[Experimental] Force to use selected tokens image for build the indicator portraits",
+  "foundryvtt-smarteasy-target.settings.forceToUseSelectedTokenForPortraitPips.name": "Force to use selected tokens image for build the indicator portraits",
+  "foundryvtt-smarteasy-target.settings.forceToUseSelectedTokenForPortraitPips.hint": "Force to use selected tokens image for build the indicator portraits",
 
-  "foundryvtt-smarteasy-target.settings.useOwnedTokenIfNoTokenIsSelected.name": "[Experimental] Use the owned tokens if no tokens is selected (Ignored if you are GM)",
-  "foundryvtt-smarteasy-target.settings.useOwnedTokenIfNoTokenIsSelected.hint": "[Experimental] This settings make sense only in combination with 'Force to use selected tokens image for build the indicator portraits' (Ignored if you are GM)"
+  "foundryvtt-smarteasy-target.settings.useOwnedTokenIfNoTokenIsSelected.name": "Use the owned tokens if no tokens is selected (Ignored if you are GM)",
+  "foundryvtt-smarteasy-target.settings.useOwnedTokenIfNoTokenIsSelected.hint": "This settings make sense only in combination with 'Force to use selected tokens image for build the indicator portraits' (Ignored if you are GM)"
 }
