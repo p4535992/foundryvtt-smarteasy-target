@@ -136,7 +136,7 @@ export const SmartEasyTarget = {
     const layer = <any>getCanvas().activeLayer;
 
     if (oe.altKey) {
-      //ui.controls?.control?.activeTool ='target';
+      //ui.controls?.control?.activeTool = 'target';
       setProperty(<any>ui.controls?.control,'activeTool','target');
     }
 
@@ -148,7 +148,7 @@ export const SmartEasyTarget = {
     wrapped(...args);
 
     (<Map<Object, any>>SmartEasyTarget.releaseOthersMap).delete(layer);
-    //ui.controls?.control?.activeTool =tool;
+    //ui.controls?.control?.activeTool = tool;
     setProperty(<any>ui.controls?.control,'activeTool',tool);
   },
 
@@ -213,7 +213,7 @@ export const SmartEasyTarget = {
       name: 'cancelTargets',
       title: 'Clear Targets/Selection',
       icon: 'fa fa-times-circle',
-      visible: true, //getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'XXX'),
+      visible: true,
       button: true,
       onClick: () => {
         control.activeTool = 'select';
@@ -225,7 +225,7 @@ export const SmartEasyTarget = {
     control.tools.push({
       name: 'cancelTargetsAll',
       title: 'Clear Targets/Selection All',
-      icon: 'fa fa-times-sqare',
+      icon: 'fa fa-adjust',
       visible: getGame().user?.isGM,
       button: true,
       onClick: () => {
@@ -279,7 +279,7 @@ export const SmartEasyTarget = {
     const tool = ui.controls?.control?.activeTool;
 
     if (oe.altKey) {
-      // ui.controls?.control?.activeTool ='target';
+      // ui.controls?.control?.activeTool = 'target';
       setProperty(<any>ui.controls?.control,'activeTool','target');
     }
 
@@ -291,7 +291,7 @@ export const SmartEasyTarget = {
     // wrapped(...args);
 
     (<Map<Object, any>>SmartEasyTarget.releaseOthersMap).delete(this);
-    // ui.controls?.control?.activeTool =tool;
+    // ui.controls?.control?.activeTool = tool;
     setProperty(<any>ui.controls?.control,'activeTool',tool);
 
     switch (mode) {
@@ -389,6 +389,10 @@ export const SmartEasyTarget = {
       setProperty(<any>ui.controls?.control,'activeTool','target');
     }
 
+    const canControl = wrapped(...args);
+    // ui.controls?.control?.activeTool =tool;
+    setProperty(<any>ui.controls?.control,'activeTool', tool);
+
     switch (mode) {
       case 1:
         if (oe.altKey) return true;
@@ -397,10 +401,6 @@ export const SmartEasyTarget = {
         if (!(<boolean>getGame().user?.isGM) && !this.isOwner) return true;
         break;
     }
-
-    const canControl = wrapped(...args);
-    // ui.controls?.control?.activeTool =tool;
-    setProperty(<any>ui.controls?.control,'activeTool', tool);
 
     return canControl;
     // return wrapped(...args);
