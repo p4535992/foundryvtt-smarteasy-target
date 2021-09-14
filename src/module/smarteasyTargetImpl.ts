@@ -1,4 +1,15 @@
-import { getGame } from "./settings";
+import { Dimensions } from '@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/documents.mjs/baseScene';
+import { getActor, getTokenFromActor, getTokenFromId, getTokenFromScene, getUserAvatarImage } from './helpers';
+import {
+  drawBetterTarget,
+  drawBullsEye1,
+  drawBullsEye2,
+  drawCrossHairs1,
+  drawCrossHairs2,
+  drawDefault,
+  getSelectedTokens,
+} from './helpers';
+import { getCanvas, getGame, SMARTEASYTARGET_MODULE_NAME } from './settings';
 
 export const SmartEasyTarget = {
   getTemplateShape: function (template) {
@@ -6,12 +17,14 @@ export const SmartEasyTarget = {
     shape = shape[0].toUpperCase() + shape.substring(1);
 
     const fn = MeasuredTemplate.prototype[`_get${shape}Shape`];
-    const dim = canvas.dimensions;
+    const dim = <Dimensions>getCanvas().dimensions;
+
     let { direction, distance, angle, width } = template.data;
 
     distance *= dim.size / dim.distance;
     width *= dim.size / dim.distance;
     direction = Math.toRadians(direction);
+    angle = <any>angle;
 
     switch (shape) {
       case 'Circle':
@@ -32,7 +45,7 @@ export const SmartEasyTarget = {
   releaseOthersMap: {},
 
   tokenSetTarget: function (wrapped, ...args) {
-    const releaseOthers = SmartEasyTarget.releaseOthersMap.get(this);
+    const releaseOthers = (<Map<Object, any>>SmartEasyTarget.releaseOthersMap).get(this);
     if (releaseOthers !== undefined) {
       args[1].releaseOthers = releaseOthers;
     }
@@ -43,14 +56,15 @@ export const SmartEasyTarget = {
   tokenOnClickLeft: function (wrapped, ...args) {
     const [event] = args;
     const oe = event.data.originalEvent;
-    const tool = ui.controls.control.activeTool;
+    const tool = ui.controls?.control?.activeTool;
 
     if (oe.altKey && getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'altTarget')) {
-      ui.controls.control.activeTool = 'target';
+      //@ts-ignore
+      ui.controls?.control?.activeTool = 'target';
     }
 
-    if (ui.controls.control.activeTool === 'target') {
-      SmartEasyTarget.releaseOthersMap.set(this, SmartEasyTarget.releaseBehaviour(oe));
+    if (ui.controls?.control?.activeTool === 'target') {
+      (<Map<Object, any>>SmartEasyTarget.releaseOthersMap).set(this, SmartEasyTarget.releaseBehaviour(oe));
       //const mode = getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'release');
       // if(mode == "standard"){
       SmartEasyTarget.clearTokenTargetsHandler(getGame().user, null);
@@ -59,9 +73,9 @@ export const SmartEasyTarget = {
 
     wrapped(...args);
 
-    SmartEasyTarget.releaseOthersMap.delete(this);
-
-    ui.controls.control.activeTool = tool;
+    (<Map<Object, any>>SmartEasyTarget.releaseOthersMap).delete(this);
+    //@ts-ignore
+    ui.controls?.control?.activeTool = tool;
   },
 
   tokenCanControl: function (wrapped, ...args) {
@@ -72,21 +86,22 @@ export const SmartEasyTarget = {
     }
 
     const oe = event.data.originalEvent;
-    const tool = ui.controls.control.activeTool;
+    const tool = ui.controls?.control?.activeTool;
 
     if (oe.altKey && getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'altTarget')) {
-      ui.controls.control.activeTool = 'target';
+      //@ts-ignore
+      ui.controls?.control?.activeTool = 'target';
     }
 
     const canControl = wrapped(...args);
-
-    ui.controls.control.activeTool = tool;
+    //@ts-ignore
+    ui.controls?.control?.activeTool = tool;
 
     return canControl;
   },
 
   tokenLayerTargetObjects: function (wrapped, ...args) {
-    const releaseOthers = SmartEasyTarget.releaseOthersMap.get(this);
+    const releaseOthers = (<Map<Object, any>>SmartEasyTarget.releaseOthersMap).get(this);
 
     if (releaseOthers !== undefined) {
       args[1].releaseOthers = releaseOthers;
@@ -98,40 +113,44 @@ export const SmartEasyTarget = {
   canvasOnClickLeft: function (wrapped, ...args) {
     const [event] = args;
     const oe = event.data.originalEvent;
-    const tool = ui.controls.control.activeTool;
+    const tool = ui.controls?.control?.activeTool;
     const selectState = event.data._selectState;
 
     if (oe.altKey && getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'altTarget')) {
-      ui.controls.control.activeTool = 'target';
+      //@ts-ignore
+      ui.controls?.control?.activeTool = 'target';
     }
 
     wrapped(...args);
 
     if (oe.altKey && getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'altTarget') && selectState !== 2) {
       const { x: ox, y: oy } = event.data.origin;
-      const templates = canvas.templates.objects.children.filter((template) => {
+      const templates = getCanvas().templates?.objects?.children.filter((template: PIXI.DisplayObject) => {
+        //@ts-ignore
         const { x: cx, y: cy } = template.center;
+        //@ts-ignore
         return template.shape.contains(ox - cx, oy - cy);
       });
 
       SmartEasyTarget.targetTokensInArea(templates, SmartEasyTarget.releaseBehaviour(oe));
     }
-
-    ui.controls.control.activeTool = tool;
+    //@ts-ignore
+    ui.controls?.control?.activeTool = tool;
   },
 
   canvasOnDragLeftDrop: function (wrapped, ...args) {
     const [event] = args;
     const oe = event.data.originalEvent;
-    const tool = ui.controls.control.activeTool;
-    const layer = canvas.activeLayer;
+    const tool = ui.controls?.control?.activeTool;
+    const layer = <any>getCanvas().activeLayer;
 
     if (oe.altKey && getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'altTarget')) {
-      ui.controls.control.activeTool = 'target';
+      //@ts-ignore
+      ui.controls?.control?.activeTool = 'target';
     }
 
-    if (ui.controls.control.activeTool === 'target') {
-      SmartEasyTarget.releaseOthersMap.set(layer, SmartEasyTarget.releaseBehaviour(oe));
+    if (ui.controls?.control?.activeTool === 'target') {
+      (<Map<Object, any>>SmartEasyTarget.releaseOthersMap).set(layer, SmartEasyTarget.releaseBehaviour(oe));
       //const mode = getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'release');
       //if(mode == "standard"){
       SmartEasyTarget.clearTokenTargetsHandler(getGame().user, null);
@@ -140,9 +159,9 @@ export const SmartEasyTarget = {
 
     wrapped(...args);
 
-    SmartEasyTarget.releaseOthersMap.delete(layer);
-
-    ui.controls.control.activeTool = tool;
+    (<Map<Object, any>>SmartEasyTarget.releaseOthersMap).delete(layer);
+    //@ts-ignore
+    ui.controls?.control?.activeTool = tool;
   },
 
   templateLayerOnDragLeftDrop: function (wrapped, ...args) {
@@ -178,19 +197,21 @@ export const SmartEasyTarget = {
 
   targetTokensInArea: function (templates, releaseOthers) {
     if (releaseOthers) {
-      getGame().user.targets.forEach((token) => token.setTarget(false, { releaseOthers: false, groupSelection: true }));
+      getGame().user?.targets.forEach((token) =>
+        token.setTarget(false, { releaseOthers: false, groupSelection: true }),
+      );
     }
 
-    canvas.tokens.objects.children
-      .filter((token) => {
+    getCanvas()
+      .tokens?.objects?.children.filter((token: Token) => {
         const { x: ox, y: oy } = token.center;
         return templates.some((template) => {
           const { x: cx, y: cy } = template.center;
           return template.shape.contains(ox - cx, oy - cy);
         });
       })
-      .forEach((token) => token.setTarget(true, { releaseOthers: false, groupSelection: true }));
-    getGame().user.broadcastActivity({ targets: getGame().user.targets.ids });
+      .forEach((token: Token) => token.setTarget(true, { releaseOthers: false, groupSelection: true }));
+    getGame().user?.broadcastActivity({ targets: getGame().user?.targets.ids });
   },
 
   /**
@@ -198,17 +219,33 @@ export const SmartEasyTarget = {
    * @param {array} controls -- the current controls hud array
    */
   getSceneControlButtonsHandler: function (controls) {
-    let control = controls.find((c) => c.name === 'token') || controls[0];
+    const control = controls.find((c) => c.name === 'token') || controls[0];
 
     control.tools.push({
       name: 'cancelTargets',
       title: 'Clear Targets/Selection',
       icon: 'fa fa-times-circle',
-      //visible: getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'XXX'),
+      visible: true, //getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'XXX'),
       button: true,
       onClick: () => {
         control.activeTool = 'select';
         Hooks.call('clearTokenTargets', getGame().user, SmartEasyTarget.clearTokenTargetsHandler(getGame().user, null));
+        return;
+      },
+      layer: 'TokenLayer',
+    });
+    control.tools.push({
+      name: 'cancelTargetsAll',
+      title: 'Clear Targets/Selection All',
+      icon: 'fa fa-times-sqare',
+      visible: getGame().user?.isGM,
+      button: true,
+      onClick: () => {
+        control.activeTool = 'select';
+        const users = <Users>getGame().users;
+        for (const [i, user] of users.entries()) {
+          Hooks.call('clearTokenTargets', getGame().user, SmartEasyTarget.clearTokenTargetsHandler(user, null));
+        }
         return;
       },
       layer: 'TokenLayer',
@@ -221,7 +258,7 @@ export const SmartEasyTarget = {
    * @param {TokenLayer} tokenlayer  -- token layer
    */
   clearTokenTargetsHandler: function (user, tokenlayer) {
-    for (let [i, t] of user.targets.entries()) {
+    for (const [i, t] of user.targets.entries()) {
       //   if (hasProperty(t.document.data, 'flags.'+SMARTEASYTARGET_MODULE_NAME+'.imagePortrait_'+t.document.data._id + "_" + this.document.data.actorId)) {
       //     t.document.unsetFlag(SMARTEASYTARGET_MODULE_NAME, 'imagePortrait_'+t.document.data._id + "_" + this.document.data.actorId);
       //   }
@@ -255,9 +292,9 @@ export const SmartEasyTarget = {
       actorID = token.document.actor.data._id;
       tokenID = token.document.id;
     }
-    let userID = u ? u.data.document.data._id : getGame().user.id;
-    let sceneID = getGame().scenes.active.id; //getGame().user.viewedScene ? getGame().user.viewedScene : getGame().scenes.active.id;
-    let pTexTmp = SmartEasyTarget.loadImagePath(tokenID, actorID, userID, sceneID);
+    const userID = u ? u.data.document.data._id : getGame().user?.id;
+    const sceneID = getGame().scenes?.active?.id; //getGame().user?.viewedScene ? getGame().user?.viewedScene : getGame().scenes.active.id;
+    const pTexTmp = SmartEasyTarget.loadImagePath(tokenID, actorID, userID, sceneID);
     let pTex = u.avatar;
 
     if (pTexTmp) {
@@ -278,30 +315,30 @@ export const SmartEasyTarget = {
       }
     }
 
-    let color = colorStringToHex(u.data.color);
+    const color = colorStringToHex(u.data.color);
     SmartEasyTarget.drawPortrait(i, color, pTex, target);
     return pTex;
   },
 
   drawPortrait(i, color, pTex, target) {
-    let circleR = getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'pipScale') || 12;
-    let circleOffsetMult = getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'pipOffset') || 16;
-    let scaleMulti = getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'pipImgScale') || 1;
-    let insidePip = getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'insidePips') ? circleR : 0;
-    let texture = new PIXI.Texture.from(pTex);
+    const circleR = <number>getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'pipScale') || 12;
+    const circleOffsetMult = <number>getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'pipOffset') || 16;
+    const scaleMulti = <number>getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'pipImgScale') || 1;
+    const insidePip = <number>getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'insidePips') ? circleR : 0;
+    const texture = PIXI.Texture.from(pTex);
     // let texture = u.isGM
     //   ? new PIXI.Texture.from(u.avatar)
     //   : new PIXI.Texture.from(
     //     pTex
     //     );
 
-    let newTexW = scaleMulti * (2 * circleR);
-    let newTexH = scaleMulti * (2 * circleR);
-    let borderThic = getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'borderThicc');
+    const newTexW = scaleMulti * (2 * circleR);
+    const newTexH = scaleMulti * (2 * circleR);
+    const borderThic = <number>getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'borderThicc');
     let portraitCenterOffset = scaleMulti >= 1 ? (16 + circleR / 12) * Math.log2(scaleMulti) : 0;
-    portraitCenterOffset += getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'pipOffsetManualY') || 0;
-    let portraitXoffset = getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'pipOffsetManualX') || 0;
-    let matrix = new PIXI.Matrix(
+    portraitCenterOffset += <number>getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'pipOffsetManualY') || 0;
+    const portraitXoffset = <number>getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'pipOffsetManualX') || 0;
+    const matrix = new PIXI.Matrix(
       (scaleMulti * (2 * circleR + 2)) / texture.width,
       0,
       0,
@@ -328,7 +365,7 @@ export const SmartEasyTarget = {
     // It's a chat message associated with an actor
     const useTokenImage = getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'useToken');
     const actor = getActor(actorID, tokenID);
-    let imgFinal = 'icons/svg/mystery-man.svg';
+    const imgFinal = 'icons/svg/mystery-man.svg';
     if (userID && !useTokenImage) {
       const imgAvatar = getUserAvatarImage(userID);
       if (imgAvatar && !imgAvatar.includes('mystery-man')) {
@@ -355,7 +392,7 @@ export const SmartEasyTarget = {
     }
 
     // Make sense only for player and for non GM
-    // if(actor?.type == "character" && getGame().user.isGM){
+    // if(actor?.type == "character" && getGame().user?.isGM){
     //     const imgAvatar = ChatPortrait.getUserAvatarImage(message);
     //     if(imgAvatar && !imgAvatar.includes("mystery-man")){
     //       return imgAvatar;
@@ -384,7 +421,9 @@ export const SmartEasyTarget = {
           // Do nothing
         }
         if (!token) {
-          tokenData = getGame().scenes?.get(sceneID)?.data?.tokens?.find((t) => t.document.data._id === tokenID); // Deprecated on 0.8.6
+          tokenData = getGame()
+            .scenes?.get(sceneID)
+            ?.data?.tokens?.find((t: TokenDocument) => t.data._id === tokenID); // Deprecated on 0.8.6
         } else {
           tokenData = token.data;
         }
@@ -414,20 +453,20 @@ export const SmartEasyTarget = {
     let imgActor = '';
     if (actor && (!imgToken || imgToken.includes('mystery-man'))) {
       if ((!imgActor || imgActor.includes('mystery-man')) && useTokenImage) {
-        imgActor = actor?.data.token.img;
+        imgActor = <string>actor?.data.token.img;
       }
       if ((!imgActor || imgActor.includes('mystery-man')) && useTokenImage) {
-        imgActor = actor?.token?.data?.img;
+        imgActor = <string>actor?.token?.data?.img;
       }
       if (!imgActor || imgActor.includes('mystery-man')) {
-        imgActor = actor?.data.img;
+        imgActor = <string>actor?.data.img;
       }
       if (imgActor && !imgActor.includes('mystery-man')) {
         return imgActor;
       }
     }
 
-    let imgAvatar = ChatPortrait.getUserAvatarImage(message);
+    const imgAvatar = getUserAvatarImage(userID);
     if (imgAvatar && !imgAvatar.includes('mystery-man')) {
       return imgAvatar;
     } else {
@@ -448,23 +487,23 @@ export const SmartEasyTarget = {
 
     // For the current user, draw the target arrows
     if (userTarget) {
-      let textColor = getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'crossairColor')
-        ? getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'crossairColor').replace('#', '0x')
+      let textColor = <string>getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'crossairColor')
+        ? (<string>getGame().settings?.get(SMARTEASYTARGET_MODULE_NAME, 'crossairColor')).replace('#', '0x')
         : 0xff9829;
 
       if (getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'use-player-color')) {
-        textColor = colorStringToHex(getGame().user['color']);
+        textColor = <number>colorStringToHex(<string>getGame().user?.['color']);
       }
 
-      let p = getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'crossairSpread') ? -10 : 4;
-      let aw = 12;
-      let h = this.h;
-      let hh = h / 2;
-      let w = this.w;
-      let hw = w / 2;
-      let ah = canvas.dimensions.size / 3;
+      const p = <number>getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'crossairSpread') ? -10 : 4;
+      const aw = 12;
+      const h = this.h;
+      const hh = h / 2;
+      const w = this.w;
+      const hw = w / 2;
+      const ah = <number>getCanvas().dimensions?.size / 3;
 
-      let selectedIndicator = getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'target-indicator');
+      const selectedIndicator = getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'target-indicator');
       switch (selectedIndicator) {
         case '0':
           drawDefault(this, textColor, p, aw, h, hh, w, hw, ah);
@@ -492,7 +531,7 @@ export const SmartEasyTarget = {
 
     // For other users, draw offset pips
     if (getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'portraitPips')) {
-      let arrayTokens = getSelectedTokens();
+      const arrayTokens = getSelectedTokens();
       let foundFlag = false;
 
       // THE FLAG SYSTEM HAS SENSE ONLY WITH TOKEN
@@ -508,14 +547,14 @@ export const SmartEasyTarget = {
               this.document.data.actorId,
           )
         ) {
-          let smartTargetModel = this.document.getFlag(
+          const smartTargetModel = this.document.getFlag(
             SMARTEASYTARGET_MODULE_NAME,
             'imagePortrait_' + this.document.data._id + '_' + this.document.data.actorId,
           );
           if (smartTargetModel && smartTargetModel.image) {
-            let i = smartTargetModel.index;
-            let color = colorStringToHex(smartTargetModel.color);
-            let pTex = smartTargetModel.image;
+            const i = smartTargetModel.index;
+            const color = colorStringToHex(smartTargetModel.color);
+            const pTex = smartTargetModel.image;
             SmartEasyTarget.drawPortrait(i, color, pTex, this.target);
             foundFlag = true;
           }
@@ -532,9 +571,9 @@ export const SmartEasyTarget = {
             }
           }
           if (arrayTokens && arrayTokens.length > 0) {
-            for (let [i, token] of arrayTokens.entries()) {
-              let pTex = SmartEasyTarget.buildCharacterPortrait(getGame().user, i, token, this.target);
-              let smarTargetModel = new SmartTargetModel(i, getGame().user.data.color, pTex);
+            for (const [i, token] of arrayTokens.entries()) {
+              const pTex = SmartEasyTarget.buildCharacterPortrait(getGame().user, i, token, this.target);
+              const smarTargetModel = new SmartTargetModel(i, getGame().user?.data.color, pTex);
               this.document.setFlag(
                 SMARTEASYTARGET_MODULE_NAME,
                 'imagePortrait_' + this.document.data._id + '_' + this.document.data.actorId,
@@ -543,25 +582,27 @@ export const SmartEasyTarget = {
             }
           } else {
             // Ignore if you are GM
-            if (!getGame().user.isGM) {
+            if (!getGame().user?.isGM) {
               if (getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'useOwnedTokenIfNoTokenIsSelected')) {
                 // If no token is selected use the token of the users character
-                let token = canvas.tokens.placeables.find((token) => token.data.id === getGame().user.character?.data?.id);
+                let token = getCanvas().tokens?.placeables.find(
+                  (token) => token.data?._id === getGame().user?.character?.data?._id,
+                );
                 // If no token is selected use the first owned token of the users character you found
                 if (!token) {
-                  token = canvas.tokens.ownedTokens[0];
+                  token = getCanvas().tokens?.ownedTokens[0];
                 }
                 if (token) {
-                  let pTex = SmartEasyTarget.buildCharacterPortrait(getGame().user, 0, token, this.target);
-                  let smarTargetModel = new SmartTargetModel(0, getGame().user.data.color, pTex);
+                  const pTex = SmartEasyTarget.buildCharacterPortrait(getGame().user, 0, token, this.target);
+                  const smarTargetModel = new SmartTargetModel(0, getGame().user?.data.color, pTex);
                   this.document.setFlag(
                     SMARTEASYTARGET_MODULE_NAME,
                     'imagePortrait_' + this.document.data._id + '_' + this.document.data.actorId,
                     smarTargetModel,
                   );
                 } else {
-                  let pTex = SmartEasyTarget.buildCharacterPortrait(getGame().user, 0, null, this.target);
-                  let smarTargetModel = new SmartTargetModel(0, getGame().user.data.color, pTex);
+                  const pTex = SmartEasyTarget.buildCharacterPortrait(getGame().user, 0, null, this.target);
+                  const smarTargetModel = new SmartTargetModel(0, getGame().user?.data.color, pTex);
                   this.document.setFlag(
                     SMARTEASYTARGET_MODULE_NAME,
                     'imagePortrait_' + this.document.data._id + '_' + this.document.data.actorId,
@@ -576,9 +617,9 @@ export const SmartEasyTarget = {
               }
             } else {
               if (others && others.length > 0) {
-                for (let [i, u] of others.entries()) {
-                  let pTex = SmartEasyTarget.buildCharacterPortrait(u, i, null, this.target);
-                  let smarTargetModel = new SmartTargetModel(i, u.data.color, pTex);
+                for (const [i, u] of others.entries()) {
+                  const pTex = SmartEasyTarget.buildCharacterPortrait(u, i, null, this.target);
+                  const smarTargetModel = new SmartTargetModel(i, (<User>u).data.color, pTex);
                   this.document.setFlag(
                     SMARTEASYTARGET_MODULE_NAME,
                     'imagePortrait_' + this.document.data._id + '_' + this.document.data.actorId,
@@ -590,9 +631,9 @@ export const SmartEasyTarget = {
           }
         } else {
           if (others && others.length > 0) {
-            for (let [i, u] of others.entries()) {
-              let pTex = SmartEasyTarget.buildCharacterPortrait(u, i, null, this.target);
-              let smarTargetModel = new SmartTargetModel(i, u.data.color, pTex);
+            for (const [i, u] of others.entries()) {
+              const pTex = SmartEasyTarget.buildCharacterPortrait(u, i, null, this.target);
+              const smarTargetModel = new SmartTargetModel(i, (<User>u).data.color, pTex);
               this.document.setFlag(
                 SMARTEASYTARGET_MODULE_NAME,
                 'imagePortrait_' + this.document.data._id + '_' + this.document.data.actorId,
@@ -603,8 +644,8 @@ export const SmartEasyTarget = {
         }
       }
     } else {
-      for (let [i, u] of others.entries()) {
-        let color = colorStringToHex(u.data.color);
+      for (const [i, u] of others.entries()) {
+        const color = colorStringToHex(<string>(<User>u).data.color);
         this.target
           .beginFill(color, 1.0)
           .lineStyle(2, 0x0000000)

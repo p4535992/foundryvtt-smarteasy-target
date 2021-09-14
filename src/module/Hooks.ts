@@ -1,8 +1,7 @@
-import { getGame } from "./settings";
-import { SmartEasyTarget } from "./smarteasyTargetImpl";
+import { getGame, SMARTEASYTARGET_MODULE_NAME } from './settings';
+import { SmartEasyTarget } from './smarteasyTargetImpl';
 
 export const readyHooks = async () => {
-
   // Do anything once the module is ready
   document.addEventListener('keydown', (event) => {
     if (getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'altTarget')) {
@@ -61,10 +60,11 @@ export const initHooks = async () => {
     'OVERRIDE',
   );
   //@ts-ignore
-  libWrapper.register(SMARTEASYTARGET_MODULE_NAME,
+  libWrapper.register(
+    SMARTEASYTARGET_MODULE_NAME,
     'Token.prototype.setTarget',
     SmartEasyTarget.tokenSetTarget,
-    'WRAPPER'
+    'WRAPPER',
   );
   //@ts-ignore
   libWrapper.register(
@@ -119,8 +119,6 @@ export const initHooks = async () => {
   Hooks.on('getSceneControlButtons', SmartEasyTarget.getSceneControlButtonsHandler);
 };
 
-
 export const setupHooks = async () => {
   // Do anything after initialization but before ready
 };
-

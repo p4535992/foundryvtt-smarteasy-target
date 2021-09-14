@@ -1,4 +1,4 @@
-import { getCanvas, getGame } from "./settings";
+import { getCanvas, getGame } from './settings';
 
 export function drawDefault(token, fillColor, p, aw, h, hh, w, hw, ah) {
   token.target
@@ -191,7 +191,7 @@ export function getTokenFromActor(actorID) {
   let token;
   const scene = <Scene>getGame().scenes?.get(<string>getGame().user?.viewedScene);
   if (scene) {
-    const thisSceneToken = <TokenDocument>scene.data.tokens.find((tokenTmp:any) => {
+    const thisSceneToken = <TokenDocument>scene.data.tokens.find((tokenTmp: any) => {
       return tokenTmp.actor && tokenTmp.actor?.id === actorID;
     });
     if (thisSceneToken) {
