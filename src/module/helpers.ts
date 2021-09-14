@@ -161,87 +161,87 @@ export function drawBetterTarget(token, fillColor, p, aw, h, hh, w, hw, ah) {
     .endFill();
 }
 
-export function getUserAvatarImage(userId) {
-  const user = getGame().users?.get(userId);
-  if (user) {
-    if (user.data && user.data.avatar) {
-      // image path
-      return user.data.avatar;
-    }
-  }
-  return 'icons/svg/mystery-man.svg';
-}
+// export function getUserAvatarImage(userId) {
+//   const user = getGame().users?.get(userId);
+//   if (user) {
+//     if (user.data && user.data.avatar) {
+//       // image path
+//       return user.data.avatar;
+//     }
+//   }
+//   return 'icons/svg/mystery-man.svg';
+// }
 
-export function getActor(actorID, tokenID) {
-  let actor = getGame().actors?.get(actorID);
-  if (!actor && tokenID) {
-    actor = getGame().actors?.tokens[tokenID];
-  }
-  if (!actor) {
-    //actor = getGame().actors.get(actorID); // Deprecated on 0.8.6
-    actor = Actors.instance.get(actorID);
-  }
-  // if (!actor) {
-  //     actor = getGame().actors?.find((a) => a.data.token.name === ???);
-  // }
-  return actor;
-}
+// export function getActor(actorID, tokenID) {
+//   let actor = getGame().actors?.get(actorID);
+//   if (!actor && tokenID) {
+//     actor = getGame().actors?.tokens[tokenID];
+//   }
+//   if (!actor) {
+//     //actor = getGame().actors.get(actorID); // Deprecated on 0.8.6
+//     actor = Actors.instance.get(actorID);
+//   }
+//   // if (!actor) {
+//   //     actor = getGame().actors?.find((a) => a.data.token.name === ???);
+//   // }
+//   return actor;
+// }
 
-export function getTokenFromActor(actorID) {
-  let token;
-  const scene = <Scene>getGame().scenes?.get(<string>getGame().user?.viewedScene);
-  if (scene) {
-    const thisSceneToken = <TokenDocument>scene.data.tokens.find((tokenTmp: any) => {
-      return tokenTmp.actor && tokenTmp.actor?.id === actorID;
-    });
-    if (thisSceneToken) {
-      token = <Token>getTokenFromId(thisSceneToken.id);
-    }
-  }
-  return token;
-}
+// export function getTokenFromActor(actorID) {
+//   let token;
+//   const scene = <Scene>getGame().scenes?.get(<string>getGame().user?.viewedScene);
+//   if (scene) {
+//     const thisSceneToken = <TokenDocument>scene.data.tokens.find((tokenTmp: any) => {
+//       return tokenTmp.actor && tokenTmp.actor?.id === actorID;
+//     });
+//     if (thisSceneToken) {
+//       token = <Token>getTokenFromId(thisSceneToken.id);
+//     }
+//   }
+//   return token;
+// }
 
-export function getTokenFromId(tokenId) {
-  try {
-    return getCanvas().tokens?.get(tokenId);
-  } catch (e) {
-    return null;
-  }
-}
+// export function getTokenFromId(tokenId) {
+//   try {
+//     return getCanvas().tokens?.get(tokenId);
+//   } catch (e) {
+//     return null;
+//   }
+// }
 
-export function getTokenFromScene(sceneID, tokenID) {
-  const specifiedScene = getGame().scenes?.get(sceneID);
-  if (specifiedScene) {
-    //return ChatPortrait.getTokenForScene(specifiedScene, tokenID);
-    if (!specifiedScene) {
-      return null;
-    }
-    return specifiedScene.data.tokens.find((token) => {
-      return token.id === tokenID;
-    });
-  }
-  let foundToken;
-  getGame().scenes?.find((scene) => {
-    //foundToken = ChatPortrait.getTokenForScene(scene, tokenID);
-    if (!scene) {
-      foundToken = null;
-    }
-    foundToken = scene.data.tokens.find((token) => {
-      return token.id === tokenID;
-    });
-    return !!foundToken;
-  });
-  return foundToken;
-}
+// export function getTokenFromScene(sceneID, tokenID) {
+//   const specifiedScene = getGame().scenes?.get(sceneID);
+//   if (specifiedScene) {
+//     //return ChatPortrait.getTokenForScene(specifiedScene, tokenID);
+//     if (!specifiedScene) {
+//       return null;
+//     }
+//     return specifiedScene.data.tokens.find((token) => {
+//       return token.id === tokenID;
+//     });
+//   }
+//   let foundToken;
+//   getGame().scenes?.find((scene) => {
+//     //foundToken = ChatPortrait.getTokenForScene(scene, tokenID);
+//     if (!scene) {
+//       foundToken = null;
+//     }
+//     foundToken = scene.data.tokens.find((token) => {
+//       return token.id === tokenID;
+//     });
+//     return !!foundToken;
+//   });
+//   return foundToken;
+// }
 
-/**
- * Returns the selected token
- */
-export function getSelectedTokens() {
-  // Get first token ownted by the player
-  const selectedTokens = getCanvas().tokens?.controlled;
-  if (!selectedTokens || selectedTokens.length == 0) {
-    return null;
-  }
-  return selectedTokens;
-}
+// /**
+//  * Returns the selected token
+//  */
+// export function getSelectedTokens() {
+//   // Get first token ownted by the player
+//   const selectedTokens = getCanvas().tokens?.controlled;
+//   if (!selectedTokens || selectedTokens.length == 0) {
+//     return null;
+//   }
+//   return selectedTokens;
+// }

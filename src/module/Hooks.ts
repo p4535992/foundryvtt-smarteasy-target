@@ -14,40 +14,39 @@ export const readyHooks = async () => {
     }
   });
 
-//   Hooks.on('hoverToken', (token, hovered) => {
-//     if (getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'altTarget')) {
-//       if (keyboard._downKeys.has('Alt') && hovered) {
-//         if (ui.controls?.control?.activeTool != 'target') {
-//           token.smarttargetPrev = ui.controls?.control?.activeTool;
-//         }
-//         //@ts-ignore
-//         ui.controls?.control?.activeTool = 'target';
-//       } else if (!hovered) {
-//         if (token.smarttargetPrev) {
-//           //@ts-ignore
-//           ui.controls?.control?.activeTool = token.smarttargetPrev;
-//           token.smarttargetPrev = null;
-//         }
-//       }
-//     }
+  //   Hooks.on('hoverToken', (token, hovered) => {
+  //     if (getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'altTarget')) {
+  //       if (keyboard._downKeys.has('Alt') && hovered) {
+  //         if (ui.controls?.control?.activeTool != 'target') {
+  //           token.smarttargetPrev = ui.controls?.control?.activeTool;
+  //         }
+  //         //@ts-ignore
+  //         ui.controls?.control?.activeTool = 'target';
+  //       } else if (!hovered) {
+  //         if (token.smarttargetPrev) {
+  //           //@ts-ignore
+  //           ui.controls?.control?.activeTool = token.smarttargetPrev;
+  //           token.smarttargetPrev = null;
+  //         }
+  //       }
+  //     }
 
-//     if (getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'alwaysTarget')) {
-//       if (!token.isOwner && hovered) {
-//         if (ui.controls?.control?.activeTool != 'target') {
-//           token.smarttargetPrev = ui.controls?.control?.activeTool;
-//         }
-//         //@ts-ignore
-//         ui.controls?.control?.activeTool = 'target';
-//       } else if (!hovered) {
-//         if (token.smarttargetPrev) {
-//           //@ts-ignore
-//           ui.controls?.control?.activeTool = token.smarttargetPrev;
-//           token.smarttargetPrev = null;
-//         }
-//       }
-//     }
-//   });
-
+  //     if (getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'alwaysTarget')) {
+  //       if (!token.isOwner && hovered) {
+  //         if (ui.controls?.control?.activeTool != 'target') {
+  //           token.smarttargetPrev = ui.controls?.control?.activeTool;
+  //         }
+  //         //@ts-ignore
+  //         ui.controls?.control?.activeTool = 'target';
+  //       } else if (!hovered) {
+  //         if (token.smarttargetPrev) {
+  //           //@ts-ignore
+  //           ui.controls?.control?.activeTool = token.smarttargetPrev;
+  //           token.smarttargetPrev = null;
+  //         }
+  //       }
+  //     }
+  //   });
 };
 
 export const initHooks = async () => {
