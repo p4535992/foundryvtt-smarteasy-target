@@ -51,49 +51,49 @@ export const SmartEasyTarget = {
     return wrapped(...args);
   },
 
-  tokenOnClickLeft: function (wrapped, ...args) {
-    const [event] = args;
-    const oe = event.data.originalEvent;
-    const tool = ui.controls?.control?.activeTool;
+  // tokenOnClickLeft: function (wrapped, ...args) {
+  //   const [event] = args;
+  //   const oe = event.data.originalEvent;
+  //   const tool = ui.controls?.control?.activeTool;
 
-    if (oe.altKey && getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'altTarget')) {
-      //@ts-ignore
-      ui.controls?.control?.activeTool = 'target';
-    }
+  //   if (oe.altKey) {
+  //     //@ts-ignore
+  //     ui.controls?.control?.activeTool ='target';
+  //   }
 
-    if (ui.controls?.control?.activeTool === 'target') {
-      (<Map<Object, any>>SmartEasyTarget.releaseOthersMap).set(this, SmartEasyTarget.releaseBehaviour(oe));
-      SmartEasyTarget.clearTokenTargetsHandler(getGame().user, null);
-    }
+  //   if (ui.controls?.control?.activeTool === 'target') {
+  //     (<Map<Object, any>>SmartEasyTarget.releaseOthersMap).set(this, SmartEasyTarget.releaseBehaviour(oe));
+  //     SmartEasyTarget.clearTokenTargetsHandler(getGame().user, null);
+  //   }
 
-    wrapped(...args);
+  //   wrapped(...args);
 
-    (<Map<Object, any>>SmartEasyTarget.releaseOthersMap).delete(this);
-    //@ts-ignore
-    ui.controls?.control?.activeTool = tool;
-  },
+  //   (<Map<Object, any>>SmartEasyTarget.releaseOthersMap).delete(this);
+  //   //@ts-ignore
+  //   ui.controls?.control?.activeTool =tool;
+  // },
 
-  tokenCanControl: function (wrapped, ...args) {
-    const [, event] = args;
+  // tokenCanControl: function (wrapped, ...args) {
+  //   const [, event] = args;
 
-    if (!event) {
-      return wrapped(...args);
-    }
+  //   if (!event) {
+  //     return wrapped(...args);
+  //   }
 
-    const oe = event.data.originalEvent;
-    const tool = ui.controls?.control?.activeTool;
+  //   const oe = event.data.originalEvent;
+  //   const tool = ui.controls?.control?.activeTool;
 
-    if (oe.altKey && getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'altTarget')) {
-      //@ts-ignore
-      ui.controls?.control?.activeTool = 'target';
-    }
+  //   if (oe.altKey) {
+  //     //@ts-ignore
+  //     ui.controls?.control?.activeTool ='target';
+  //   }
 
-    const canControl = wrapped(...args);
-    //@ts-ignore
-    ui.controls?.control?.activeTool = tool;
+  //   const canControl = wrapped(...args);
+  //   //@ts-ignore
+  //   ui.controls?.control?.activeTool =tool;
 
-    return canControl;
-  },
+  //   return canControl;
+  // },
 
   tokenLayerTargetObjects: function (wrapped, ...args) {
     const releaseOthers = (<Map<Object, any>>SmartEasyTarget.releaseOthersMap).get(this);
@@ -111,25 +111,21 @@ export const SmartEasyTarget = {
   //   const tool = ui.controls?.control?.activeTool;
   //   const selectState = event.data._selectState;
 
-  //   if (oe.altKey && getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'altTarget')) {
-  //     //@ts-ignore
+  //   if (oe.altKey && ) {
   //     ui.controls?.control?.activeTool = 'target';
   //   }
 
   //   wrapped(...args);
 
-  //   if (oe.altKey && getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'altTarget') && selectState !== 2) {
+  //   if (oe.altKey &&  && selectState !== 2) {
   //     const { x: ox, y: oy } = event.data.origin;
   //     const templates = getCanvas().templates?.objects?.children.filter((template: PIXI.DisplayObject) => {
-  //       //@ts-ignore
   //       const { x: cx, y: cy } = template.center;
-  //       //@ts-ignore
   //       return template.shape.contains(ox - cx, oy - cy);
   //     });
 
   //     SmartEasyTarget.targetTokensInArea(templates, SmartEasyTarget.releaseBehaviour(oe));
   //   }
-  //   //@ts-ignore
   //   ui.controls?.control?.activeTool = tool;
   // },
 
@@ -139,21 +135,21 @@ export const SmartEasyTarget = {
     const tool = ui.controls?.control?.activeTool;
     const layer = <any>getCanvas().activeLayer;
 
-    if (oe.altKey && getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'altTarget')) {
-      //@ts-ignore
-      ui.controls?.control?.activeTool = 'target';
+    if (oe.altKey) {
+      //ui.controls?.control?.activeTool ='target';
+      setProperty(<any>ui.controls?.control,'activeTool','target');
     }
 
     if (ui.controls?.control?.activeTool === 'target') {
       (<Map<Object, any>>SmartEasyTarget.releaseOthersMap).set(layer, SmartEasyTarget.releaseBehaviour(oe));
-      SmartEasyTarget.clearTokenTargetsHandler(getGame().user, null);
+      // SmartEasyTarget.clearTokenTargetsHandler(getGame().user, null);
     }
 
     wrapped(...args);
 
     (<Map<Object, any>>SmartEasyTarget.releaseOthersMap).delete(layer);
-    //@ts-ignore
-    ui.controls?.control?.activeTool = tool;
+    //ui.controls?.control?.activeTool =tool;
+    setProperty(<any>ui.controls?.control,'activeTool',tool);
   },
 
   templateLayerOnDragLeftDrop: function (wrapped, ...args) {
@@ -163,7 +159,7 @@ export const SmartEasyTarget = {
 
     wrapped(...args);
 
-    if (oe.altKey && getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'altTarget')) {
+    if (oe.altKey) {
       const template = new MeasuredTemplate(object.document);
       template.shape = SmartEasyTarget.getTemplateShape(template);
       SmartEasyTarget.targetTokensInArea([template], SmartEasyTarget.releaseBehaviour(oe));
@@ -250,16 +246,16 @@ export const SmartEasyTarget = {
    * @param {TokenLayer} tokenlayer  -- token layer
    */
   clearTokenTargetsHandler: function (user, tokenlayer) {
-    for (const [i, t] of user.targets.entries()) {
-      //   if (hasProperty(t.document.data, 'flags.'+SMARTEASYTARGET_MODULE_NAME+'.imagePortrait_'+t.document.data._id + "_" + this.document.data.actorId)) {
-      //     t.document.unsetFlag(SMARTEASYTARGET_MODULE_NAME, 'imagePortrait_'+t.document.data._id + "_" + this.document.data.actorId);
-      //   }
-      Object.entries(t.document.data.flags[SMARTEASYTARGET_MODULE_NAME]).forEach(([key, val]) => {
-        if (key.startsWith('imagePortrait_')) {
-          t.document.unsetFlag(SMARTEASYTARGET_MODULE_NAME, key);
-        }
-      });
-    }
+    // for (const [i, t] of user.targets.entries()) {
+    //   //   if (hasProperty(t.document.data, 'flags.'+SMARTEASYTARGET_MODULE_NAME+'.imagePortrait_'+t.document.data._id + "_" + this.document.data.actorId)) {
+    //   //     t.document.unsetFlag(SMARTEASYTARGET_MODULE_NAME, 'imagePortrait_'+t.document.data._id + "_" + this.document.data.actorId);
+    //   //   }
+    //   Object.entries(t.document.data.flags[SMARTEASYTARGET_MODULE_NAME]).forEach(([key, val]) => {
+    //     if (key.startsWith('imagePortrait_')) {
+    //       t.document.unsetFlag(SMARTEASYTARGET_MODULE_NAME, key);
+    //     }
+    //   });
+    // }
     user.targets.forEach((t) =>
       t.setTarget(false, {
         user: user,
@@ -280,6 +276,24 @@ export const SmartEasyTarget = {
   _tokenOnClickLeft(wrapped, ...args) {
     const mode = SmartEasyTarget.settings().mode;
     const oe = args[0].data.originalEvent;
+    const tool = ui.controls?.control?.activeTool;
+
+    if (oe.altKey) {
+      // ui.controls?.control?.activeTool ='target';
+      setProperty(<any>ui.controls?.control,'activeTool','target');
+    }
+
+    if (ui.controls?.control?.activeTool === 'target') {
+      (<Map<Object, any>>SmartEasyTarget.releaseOthersMap).set(this, SmartEasyTarget.releaseBehaviour(oe));
+      // SmartEasyTarget.clearTokenTargetsHandler(getGame().user, null);
+    }
+
+    // wrapped(...args);
+
+    (<Map<Object, any>>SmartEasyTarget.releaseOthersMap).delete(this);
+    // ui.controls?.control?.activeTool =tool;
+    setProperty(<any>ui.controls?.control,'activeTool',tool);
+
     switch (mode) {
       case 0:
         return wrapped(...args);
@@ -311,14 +325,14 @@ export const SmartEasyTarget = {
     const selectState = args[0].data._selectState;
 
     if (oe.altKey) {
-      if (oe.altKey && getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'altTarget')) {
-        //@ts-ignore
-        ui.controls?.control?.activeTool = 'target';
+      if (oe.altKey ) {
+        // ui.controls?.control?.activeTool ='target';
+        setProperty(<any>ui.controls?.control,'activeTool','target');
       }
 
       wrapped(...args);
 
-      if (oe.altKey && getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'altTarget') && selectState !== 2) {
+      if (oe.altKey && selectState !== 2) {
         const { x: ox, y: oy } = args[0].data.origin;
         const templates = getCanvas().templates?.objects?.children.filter((template: PIXI.DisplayObject) => {
           //@ts-ignore
@@ -329,9 +343,9 @@ export const SmartEasyTarget = {
 
         SmartEasyTarget.targetTokensInArea(templates, SmartEasyTarget.releaseBehaviour(oe));
       }
-      //@ts-ignore
-      ui.controls?.control?.activeTool = tool;
-
+      
+      // ui.controls?.control?.activeTool =tool;
+      setProperty(<any>ui.controls?.control,'activeTool',tool);
       let distance = Infinity;
       let closestTemplate: MeasuredTemplate | null = null;
       const places = <MeasuredTemplate[]>getCanvas().templates?.placeables;
@@ -362,6 +376,19 @@ export const SmartEasyTarget = {
     if (!args[1]) return wrapped(...args);
     const mode = SmartEasyTarget.settings().mode;
     const oe = args[1].data.originalEvent;
+    const tool = ui.controls?.control?.activeTool;
+
+    // const [, event] = args;
+
+    // if (!event) {
+    //   return wrapped(...args);
+    // }
+
+    if (oe.altKey) {
+      // ui.controls?.control?.activeTool ='target';
+      setProperty(<any>ui.controls?.control,'activeTool','target');
+    }
+
     switch (mode) {
       case 1:
         if (oe.altKey) return true;
@@ -370,7 +397,13 @@ export const SmartEasyTarget = {
         if (!(<boolean>getGame().user?.isGM) && !this.isOwner) return true;
         break;
     }
-    return wrapped(...args);
+
+    const canControl = wrapped(...args);
+    // ui.controls?.control?.activeTool =tool;
+    setProperty(<any>ui.controls?.control,'activeTool', tool);
+
+    return canControl;
+    // return wrapped(...args);
   },
 
   /**
