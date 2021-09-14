@@ -35,35 +35,35 @@ export function getGame(): Game {
 
 export const registerSettings = function () {
   getGame().settings.register(SMARTEASYTARGET_MODULE_NAME, 'targetingMode', {
-    name: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.targetingMode.name'),
-    hint: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.targetingMode.hint'),
+    name: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.targetingMode.name`),
+    hint: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.targetingMode.hint`),
     scope: 'client',
     config: true,
     default: 1,
     type: Number,
     choices: {
-      0: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.targetingMode.opt0'),
-      1: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.targetingMode.opt1'),
-      2: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.targetingMode.opt2'),
+      0: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.targetingMode.opt0`),
+      1: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.targetingMode.opt1`),
+      2: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.targetingMode.opt2`),
     },
   });
 
   getGame().settings.register(SMARTEASYTARGET_MODULE_NAME, 'release', {
-    name: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.releaseBehaviour.name'),
-    hint: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.releaseBehaviour.hint'),
+    name: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.releaseBehaviour.name`),
+    hint: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.releaseBehaviour.hint`),
     scope: 'client',
     config: true,
     default: 0,
     type: Number,
     choices: {
-      0: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.releaseBehaviour.choice0.Standard'),
-      1: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.releaseBehaviour.choice0.Sticky'),
+      0: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.releaseBehaviour.choice0.Standard`),
+      1: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.releaseBehaviour.choice0.Sticky`),
     },
   });
 
   getGame().settings.register(SMARTEASYTARGET_MODULE_NAME, 'portraitPips', {
-    name: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.portraitPips.name'),
-    hint: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.portraitPips.hint'),
+    name: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.portraitPips.name`),
+    hint: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.portraitPips.hint`),
     scope: 'world',
     config: true,
     default: false,
@@ -71,8 +71,8 @@ export const registerSettings = function () {
   });
 
   getGame().settings.register(SMARTEASYTARGET_MODULE_NAME, 'useToken', {
-    name: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.useToken.name'),
-    hint: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.useToken.hint'),
+    name: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.useToken.name`),
+    hint: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.useToken.hint`),
     scope: 'world',
     config: true,
     default: false,
@@ -80,22 +80,22 @@ export const registerSettings = function () {
   });
 
   getGame().settings.register(SMARTEASYTARGET_MODULE_NAME, 'useTokenGm', {
-    name: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.useTokenGm.name'),
-    hint: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.useTokenGm.hint'),
+    name: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.useTokenGm.name`),
+    hint: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.useTokenGm.hint`),
     scope: 'world',
     config: true,
     default: 0,
     type: Number,
     choices: {
-      0: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.useTokenGm.opt0'),
-      1: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.useTokenGm.opt1'),
-      2: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.useTokenGm.opt2'),
+      0: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.useTokenGm.opt0`),
+      1: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.useTokenGm.opt1`),
+      2: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.useTokenGm.opt2`),
     },
   });
 
   getGame().settings.register(SMARTEASYTARGET_MODULE_NAME, 'insidePips', {
-    name: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.insidePips.name'),
-    hint: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.insidePips.hint'),
+    name: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.insidePips.name`),
+    hint: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.insidePips.hint`),
     scope: 'world',
     config: true,
     default: false,
@@ -103,8 +103,8 @@ export const registerSettings = function () {
   });
 
   getGame().settings.register(SMARTEASYTARGET_MODULE_NAME, 'pipImgScale', {
-    name: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.pipImgScale.name'),
-    hint: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.pipImgScale.hint'),
+    name: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.pipImgScale.name`),
+    hint: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.pipImgScale.hint`),
     scope: 'world',
     config: true,
     type: Number,
@@ -117,8 +117,8 @@ export const registerSettings = function () {
   });
 
   getGame().settings.register(SMARTEASYTARGET_MODULE_NAME, 'pipOffsetManualY', {
-    name: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.pipOffsetManualY.name'),
-    hint: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.pipOffsetManualY.hint'),
+    name: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.pipOffsetManualY.name`),
+    hint: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.pipOffsetManualY.hint`),
     scope: 'world',
     config: true,
     type: Number,
@@ -131,8 +131,8 @@ export const registerSettings = function () {
   });
 
   getGame().settings.register(SMARTEASYTARGET_MODULE_NAME, 'pipOffsetManualX', {
-    name: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.pipOffsetManualX.name'),
-    hint: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.pipOffsetManualX.hint'),
+    name: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.pipOffsetManualX.name`),
+    hint: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.pipOffsetManualX.hint`),
     scope: 'world',
     config: true,
     type: Number,
@@ -145,8 +145,8 @@ export const registerSettings = function () {
   });
 
   getGame().settings.register(SMARTEASYTARGET_MODULE_NAME, 'pipScale', {
-    name: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.pipScale.name'),
-    hint: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.pipScale.hint'),
+    name: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.pipScale.name`),
+    hint: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.pipScale.hint`),
     scope: 'world',
     config: true,
     type: Number,
@@ -159,8 +159,8 @@ export const registerSettings = function () {
   });
 
   getGame().settings.register(SMARTEASYTARGET_MODULE_NAME, 'pipOffset', {
-    name: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.pipOffset.name'),
-    hint: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.pipOffset.hint'),
+    name: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.pipOffset.name`),
+    hint: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.pipOffset.hint`),
     scope: 'world',
     config: true,
     type: Number,
@@ -173,8 +173,8 @@ export const registerSettings = function () {
   });
 
   getGame().settings.register(SMARTEASYTARGET_MODULE_NAME, 'borderThicc', {
-    name: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.borderThicc.name'),
-    hint: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.borderThicc.hint'),
+    name: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.borderThicc.name`),
+    hint: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.borderThicc.hint`),
     scope: 'world',
     config: true,
     type: Number,
@@ -187,8 +187,8 @@ export const registerSettings = function () {
   });
 
   getGame().settings.register(SMARTEASYTARGET_MODULE_NAME, 'crossairSpread', {
-    name: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.crossairSpread.name'),
-    hint: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.crossairSpread.hint'),
+    name: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.crossairSpread.name`),
+    hint: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.crossairSpread.hint`),
     scope: 'client',
     config: true,
     default: false,
@@ -196,8 +196,8 @@ export const registerSettings = function () {
   });
 
   getGame().settings.register(SMARTEASYTARGET_MODULE_NAME, 'crossairColor', {
-    name: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.crossairColor.name'),
-    hint: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.crossairColor.hint'),
+    name: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.crossairColor.name`),
+    hint: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.crossairColor.hint`),
     scope: 'client',
     config: true,
     type: String,
@@ -205,25 +205,25 @@ export const registerSettings = function () {
   });
 
   getGame().settings.register(SMARTEASYTARGET_MODULE_NAME, 'target-indicator', {
-    name: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.target-indicator.name'),
-    hint: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.target-indicator.hint'),
+    name: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.target-indicator.name`),
+    hint: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.target-indicator.hint`),
     scope: 'client',
     config: true,
     default: '0',
     type: String,
     choices: {
-      0: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.target-indicator-choices-0'),
-      1: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.target-indicator-choices-1'),
-      2: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.target-indicator-choices-2'),
-      3: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.target-indicator-choices-3'),
-      4: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.target-indicator-choices-4'),
-      5: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.target-indicator-choices-5'),
+      0: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.target-indicator-choices-0`),
+      1: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.target-indicator-choices-1`),
+      2: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.target-indicator-choices-2`),
+      3: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.target-indicator-choices-3`),
+      4: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.target-indicator-choices-4`),
+      5: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.target-indicator-choices-5`),
     },
   });
 
   getGame().settings.register(SMARTEASYTARGET_MODULE_NAME, 'use-player-color', {
-    name: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.use-player-color.name'),
-    hint: i18n(SMARTEASYTARGET_MODULE_NAME + '.settings.use-player-color.hint'),
+    name: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.use-player-color.name`),
+    hint: i18n(`${SMARTEASYTARGET_MODULE_NAME}.settings.use-player-color.hint`),
     scope: 'world',
     config: true,
     default: false,
