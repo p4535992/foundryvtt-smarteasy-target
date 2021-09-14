@@ -1,8 +1,9 @@
 {
   "private": true,
-  "name": "forien-unidentified-items",
-  "version": "0.3.0",
-  "description": "Provides system agnostic solution to handle unidentified items and their identification.",
+  "name": "foundryvtt-smarteasy-target",
+  "title": "Smart and Easy Target",
+  "description": "Enhancements for the targeting feature",
+  "version": "0.0.1",
   "scripts": {
     "package": "gulp package",
     "build": "gulp build && gulp link",
