@@ -1,5 +1,5 @@
 # Smart-Easy-Target
-## THIS IS NOT A OPERATIONAL MODULE, I'm just learning how to write code for Foundry VTT.
+## THIS IS NOT A OFFICIAL MODULE, I'm just learning how to write code for Foundry VTT.
 
 A small Foundry VTT module that allows for easy targeting whilst holding alt. Also allows for alt+clicking inside an AoE to target all tokens within that AoE. Holding alt while placing a template will also target all tokens within that template when placed.
 
