@@ -393,14 +393,8 @@ export const SmartEasyTarget = {
     // // ui.controls?.control?.activeTool =tool;
     // setProperty(<any>ui.controls?.control,'activeTool', tool);
 
-    switch (mode) {
-      case 1:
-        if (oe.altKey) return true;
-        break;
-      case 2:
-        if (!(<boolean>getGame().user?.isGM) && !this.isOwner) return true;
-        break;
-    }
+    if (mode == 1 && oe.altKey) return true;
+    if (mode == 2 && !getGame().user?.isGM && !this.isOwner) return true;
 
     // return canControl;
     return wrapped(...args);

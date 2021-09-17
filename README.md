@@ -1,7 +1,19 @@
-# Smart-Easy-Target
+# Smart and Easy Target
 ## THIS IS NOT A OFFICIAL MODULE, I'm just learning how to write code for Foundry VTT.
 
-A small Foundry VTT module that allows for easy targeting whilst holding alt. Also allows for alt+clicking inside an AoE to target all tokens within that AoE. Holding alt while placing a template will also target all tokens within that template when placed.
+A small Foundry VTT module that allows for easy targeting while holding "alt". 
+Also allows for alt+clicking inside an AoE to target all tokens within that AoE. 
+Holding alt while placing a template will also target all tokens within that template when placed.
+
+**Note: This is module is inspired from :**
+
+- the  wonderful work done by [theRipper93](https://github.com/theripper93) with its [Smart Target]((https://github.com/theripper93/Smart-Target) module.
+If you want to support more modules of this kind, I invite you to go and support his patreon
+
+[![alt-text](https://img.shields.io/badge/-Patreon-%23ff424d?style=for-the-badge)](https://www.patreon.com/theripper93) [![alt-text](https://img.shields.io/badge/-Discord-%235662f6?style=for-the-badge)](https://discord.gg/F53gBjR97G)
+
+- the  wonderful work done by [Fyorl](https://bitbucket.org/%7Beee45cf2-a6e7-43d6-bded-8054de334101%7D/) with its [Easy Target]((https://bitbucket.org/Fyorl/easy-target/src/master) module.
+
 
 ## Features
 
