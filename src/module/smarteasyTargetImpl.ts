@@ -278,21 +278,21 @@ export const SmartEasyTarget = {
     const oe = args[0].data.originalEvent;
     const tool = ui.controls?.control?.activeTool;
 
-    // if (oe.altKey) {
-    //   // ui.controls?.control?.activeTool = 'target';
-    //   setProperty(<any>ui.controls?.control,'activeTool','target');
-    // }
+    if (oe.altKey) {
+      // ui.controls?.control?.activeTool = 'target';
+      setProperty(<any>ui.controls?.control, 'activeTool', 'target');
+    }
 
-    // if (ui.controls?.control?.activeTool === 'target') {
-    //   (<Map<Object, any>>SmartEasyTarget.releaseOthersMap).set(this, SmartEasyTarget.releaseBehaviour(oe));
-    //   // SmartEasyTarget.clearTokenTargetsHandler(getGame().user, null);
-    // }
+    if (ui.controls?.control?.activeTool === 'target') {
+      (<Map<Object, any>>SmartEasyTarget.releaseOthersMap).set(this, SmartEasyTarget.releaseBehaviour(oe));
+      // SmartEasyTarget.clearTokenTargetsHandler(getGame().user, null);
+    }
 
-    // // wrapped(...args);
+    // wrapped(...args);
 
-    // (<Map<Object, any>>SmartEasyTarget.releaseOthersMap).delete(this);
-    // // ui.controls?.control?.activeTool = tool;
-    // setProperty(<any>ui.controls?.control,'activeTool',tool);
+    (<Map<Object, any>>SmartEasyTarget.releaseOthersMap).delete(this);
+    // ui.controls?.control?.activeTool = tool;
+    setProperty(<any>ui.controls?.control, 'activeTool', tool);
 
     switch (mode) {
       case 0:
