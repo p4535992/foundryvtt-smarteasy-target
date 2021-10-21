@@ -7,12 +7,12 @@ Holding alt while placing a template will also target all tokens within that tem
 
 **Note: This is module is inspired from :**
 
-- the  wonderful work done by [theRipper93](https://github.com/theripper93) with its [Smart Target]((https://github.com/theripper93/Smart-Target) module.
+- the  wonderful work done by [theRipper93](https://github.com/theripper93) with its [Smart Target](https://github.com/theripper93/Smart-Target) module.
 If you want to support more modules of this kind, I invite you to go and support his patreon
 
 [![alt-text](https://img.shields.io/badge/-Patreon-%23ff424d?style=for-the-badge)](https://www.patreon.com/theripper93) [![alt-text](https://img.shields.io/badge/-Discord-%235662f6?style=for-the-badge)](https://discord.gg/F53gBjR97G)
 
-- the  wonderful work done by [Fyorl](https://bitbucket.org/%7Beee45cf2-a6e7-43d6-bded-8054de334101%7D/) with its [Easy Target]((https://bitbucket.org/Fyorl/easy-target/src/master) module.
+- the  wonderful work done by [Fyorl](https://bitbucket.org/%7Beee45cf2-a6e7-43d6-bded-8054de334101%7D/) with its [Easy Target](https://bitbucket.org/Fyorl/easy-target/src/master) module.
 
 
 ## Features
