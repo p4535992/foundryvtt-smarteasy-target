@@ -11,6 +11,18 @@ export const readyHooks = async () => {
       getGame().user?.broadcastActivity({ targets: getGame().user?.targets.ids });
     }
   });
+
+  Hooks.on('targetToken', (user: User, token: Token, targeted) => {
+    const gmTexSetting = getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'useTokenGm');
+    if (!getGame().user?.isGM || !targeted || !gmTexSetting) return;
+
+    let flag;
+    if (gmTexSetting == 1) flag = _token?.actor?.data.img || _token?.data.img;
+    if (gmTexSetting == 2) flag = _token?.data.img || _token?.actor?.data.img;
+    flag &&
+      flag != token.document.getFlag(SMARTEASYTARGET_MODULE_NAME, 'gmtargetimg') &&
+      token.document.setFlag(SMARTEASYTARGET_MODULE_NAME, 'gmtargetimg', flag);
+  });
 };
 
 export const initHooks = async () => {

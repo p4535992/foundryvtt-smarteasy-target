@@ -465,16 +465,6 @@ export const SmartEasyTarget = {
     this.target.clear();
     if (!this.targeted.size) return;
 
-    if (getGame().user?.isGM) {
-      let flag;
-      const gmTexSetting = getGame().settings.get(SMARTEASYTARGET_MODULE_NAME, 'useTokenGm');
-      if (gmTexSetting == 1) flag = _token?.actor?.data.img || _token?.data.img;
-      if (gmTexSetting == 2) flag = _token?.data.img || _token?.actor?.data.img;
-      flag &&
-        flag != this.document.getFlag(SMARTEASYTARGET_MODULE_NAME, 'gmtargetimg') &&
-        this.document.setFlag(SMARTEASYTARGET_MODULE_NAME, 'gmtargetimg', flag);
-    }
-
     // Determine whether the current user has target and any other users
     const [others, user] = Array.from(this.targeted).partition((u) => u === getGame().user);
     const userTarget = user.length;
