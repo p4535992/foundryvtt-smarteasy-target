@@ -1,5 +1,18 @@
 # Smart and Easy Target
-## THIS IS NOT A OFFICIAL MODULE, BUT IT WORK
+
+## THIS IS NOT A OFFICIAL MODULE, because is a merging of two official modules so i prefer to no made a third module (for license and similar issue), but if anyone found useful here the thing.
+
+![Latest Release Download Count](https://img.shields.io/github/downloads/p4535992/foundryvtt-smarteasy-target/latest/module.zip?color=2b82fc&label=DOWNLOADS&style=for-the-badge) 
+
+[![Forge Installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Ffoundryvtt-smarteasy-target&colorB=006400&style=for-the-badge)](https://forge-vtt.com/bazaar#package=foundryvtt-smarteasy-target) 
+
+![Foundry Core Compatible Version](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fraw.githubusercontent.com%2Fp4535992%2Ffoundryvtt-smarteasy-target%2Fmaster%2Fsrc%2Fmodule.json&label=Foundry%20Version&query=$.compatibleCoreVersion&colorB=orange&style=for-the-badge)
+
+![Forge Installs](https://img.shields.io/badge/dynamic/json?color=red&label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Ffoundryvtt-smarteasy-target&style=for-the-badge) 
+
+![Latest Version](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fraw.githubusercontent.com%2Fp4535992%2Ffoundryvtt-smarteasy-target%2Fmaster%2Fsrc%2Fmodule.json&label=Latest%20Release&prefix=v&query=$.version&colorB=orange&style=for-the-badge)
+
+[![Foundry Hub Endorsements](https://img.shields.io/endpoint?logoColor=white&url=https%3A%2F%2Fwww.foundryvtt-hub.com%2Fwp-json%2Fhubapi%2Fv1%2Fpackage%2Ffoundryvtt-smarteasy-target%2Fshield%2Fendorsements&style=for-the-badge)](https://www.foundryvtt-hub.com/package/foundryvtt-smarteasy-target/)
 
 A small Foundry VTT module that allows for easy targeting while holding "alt". 
 Also allows for alt+clicking inside an AoE to target all tokens within that AoE. 
@@ -14,6 +27,11 @@ If you want to support more modules of this kind, I invite you to go and support
 
 - the  wonderful work done by [Fyorl](https://bitbucket.org/%7Beee45cf2-a6e7-43d6-bded-8054de334101%7D/) with its [Easy Target](https://bitbucket.org/Fyorl/easy-target/src/master) module.
 
+## Common question
+
+### WHat the difference between this and  [Smart Target](https://github.com/theripper93/Smart-Target) ?
+
+The code is rewritten from the javascript to typescript , with prettier and eslint applied, but the only functionality difference is you can *alt+clicking inside an AoE to target all tokens within that AoE* like in [Easy Target](https://bitbucket.org/Fyorl/easy-target/src/master)
 
 ## Features
 
